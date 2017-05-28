@@ -5,12 +5,32 @@ package com.raywenderlich.alltherages.database.model;
  */
 
 public class RageComic {
+    private String urlPic;
     private String name;
     private String description;
+    private String url;
 
-    public RageComic(String name, String description) {
+    public RageComic(String urlPic, String name, String description, String url) {
+        this.urlPic = urlPic;
         this.name = name;
         this.description = description;
+        this.url = url;
+    }
+
+    public String getUrlPic() {
+        return urlPic;
+    }
+
+    public void setUrlPic(String urlPic) {
+        this.urlPic = urlPic;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getName() {
@@ -29,11 +49,15 @@ public class RageComic {
         this.description = description;
     }
 
+
     @Override
     public String toString() {
         return "RageComic{" +
-                "name='" + name + '\'' +
+                "urlPic='" + urlPic + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
+
 }

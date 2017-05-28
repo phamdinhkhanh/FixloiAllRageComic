@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RageComicListFragment extends Fragment {
+public class RageComicListFragment extends Fragment{
   private static String TAG = RageComicListFragment.class.toString();
   @BindView(R.id.recycler_view)
   RecyclerView recyclerView;
@@ -48,9 +48,12 @@ public class RageComicListFragment extends Fragment {
     recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
   }
   @Subscribe
-  public void onChageRageCOmicDetail(RageComicReturn rageComicReturn){
+  public void onChangeFragment(RageComicReturn rageComicReturn){
     RageComicDetailsFragment rageComicDetailsFragment = new RageComicDetailsFragment();
     rageComicDetailsFragment.setRageComic(rageComicReturn.getRageComic());
-    fragmentListener.onChangeFragment(rageComicDetailsFragment,true);
+    getFragmentManager().beginTransaction()
+                        .replace(R.id.fl_main, rageComicDetailsFragment)
+                        .addToBackStack(null)
+                        .commit();
   }
 }

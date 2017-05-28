@@ -22,7 +22,7 @@ public class RageComicAdapter extends RecyclerView.Adapter<RageComicViewHolder> 
     @Override
     public RageComicViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.fragment_rage_comic_list,
+        View view = layoutInflater.inflate(R.layout.recycler_item_rage_comic,
                 viewGroup,
                 false);
         return new RageComicViewHolder(view);
