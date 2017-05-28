@@ -14,11 +14,18 @@ public class DBContext {
 
     public static final List<RageComic> getAllRage(){
         List<RageComic> rageComics = new ArrayList<>();
-        rageComics.add(new RageComic("http://i3.kym-cdn.com/photos/images/original/000/030/404/1260585284155.png",
-                "cereal-guy","I'm cereal-guy","http://knowyourmeme.com/memes/cereal-guy"));
-        rageComics.add(new RageComic("http://i2.kym-cdn.com/photos/images/original/000/039/879/Fuck_Yea.PNG",
-                "fck-yea","I'm fck-yea guy","http://knowyourmeme.com/memes/fuck-yea--5"
+        rageComics.add(new RageComic("https://fimgs.net/images/perfume/nd.7222.jpg",
+                "Sophie Guerlain","Sophie Guerlain","https://www.fragrantica.com/perfume/Guerlain/Les-Secrets-de-Sophie-7222.html"));
+        rageComics.add(new RageComic("https://fimgs.net/images/perfume/nd.53.jpg",
+                "Shalimar Guerlain","I'm Shalimar Guerlain","https://www.fragrantica.com/perfume/Guerlain/Shalimar-53.html"
                 ));
+        rageComics.add(new RageComic("https://fimgs.net/images/perfume/nd.608.jpg",
+                "Chanel N°5","I'm Chanel N°5","https://www.fragrantica.com/perfume/Chanel/Chanel-N-5-608.html"
+        ));
+
+        rageComics.add(new RageComic("https://fimgs.net/images/perfume/nd.207.jpg",
+                "Mitsouko","I'm Mitsouko","https://www.fragrantica.com/perfume/Guerlain/Mitsouko-Eau-de-Toilette-207.html"
+        ));
         return rageComics;
     }
 }

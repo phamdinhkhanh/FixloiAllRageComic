@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.raywenderlich.alltherages.utils.FragmentListener;
 
@@ -26,6 +29,38 @@ public class MainActivity extends AppCompatActivity implements
       RageComicListFragment rageComicListFragment = new RageComicListFragment();
       onChangeFragment(rageComicListFragment,true);
     }
+
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    toggle = new ActionBarDrawerToggle(
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+    drawer.setDrawerListener(toggle);
+    toggle.syncState();
+
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    navigationView.setNavigationItemSelectedListener(this);
+    //
+    getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+      @Override
+      public void onBackStackChanged() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+          // set toggle icon arrow
+          toggle.setDrawerIndicatorEnabled(false);
+          toggle.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24px);
+          toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              onBackPressed();
+            }
+          });
+        }else{
+          toggle.setDrawerIndicatorEnabled(true);
+          toggle.setToolbarNavigationClickListener(null);
+        }
+      }
+    });
   ;}
 
   public boolean onCreateOptionMenu(Menu menu){
