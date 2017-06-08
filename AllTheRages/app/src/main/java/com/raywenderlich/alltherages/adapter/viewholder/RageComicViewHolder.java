@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
 
 public class RageComicViewHolder extends RecyclerView.ViewHolder{
     private static String TAG = RageComicViewHolder.class.toString();
-    @BindView(R.id.comic_image) ImageView
+    @BindView(R.id.im_comic) ImageView
     mImageView;
-    @BindView(R.id.name) TextView
+    @BindView(R.id.tv_name) TextView
     name;
 
     public RageComicViewHolder(View itemView) {

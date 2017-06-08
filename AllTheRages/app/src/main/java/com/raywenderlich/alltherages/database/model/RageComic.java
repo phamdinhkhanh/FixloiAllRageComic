@@ -1,36 +1,42 @@
 package com.raywenderlich.alltherages.database.model;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by laptopTCC on 5/27/2017.
  */
 
-public class RageComic {
-    private String urlPic;
+public class RageComic extends RealmObject{
+    @PrimaryKey
+    private String oid;
     private String name;
-    private String description;
     private String url;
+    private String description;
+    private Float old_price;
+    private Float new_price;
+    private Float discount_rate;
+    private Boolean is_favorite;
 
-    public RageComic(String urlPic, String name, String description, String url) {
-        this.urlPic = urlPic;
+
+    public RageComic(String oid, String name, String url, String description, Float old_price, Float new_price, Float discount_rate, Boolean is_favorite) {
+        this.oid = oid;
         this.name = name;
+        this.url = url;
         this.description = description;
-        this.url = url;
+        this.old_price = old_price;
+        this.new_price = new_price;
+        this.discount_rate = discount_rate;
+        this.is_favorite = is_favorite;
     }
 
-    public String getUrlPic() {
-        return urlPic;
+
+    public String getOid() {
+        return oid;
     }
 
-    public void setUrlPic(String urlPic) {
-        this.urlPic = urlPic;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public void setId(String oid) {
+        this.oid = oid;
     }
 
     public String getName() {
@@ -41,6 +47,14 @@ public class RageComic {
         this.name = name;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -49,15 +63,35 @@ public class RageComic {
         this.description = description;
     }
 
-
-    @Override
-    public String toString() {
-        return "RageComic{" +
-                "urlPic='" + urlPic + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+    public Float getOld_price() {
+        return old_price;
     }
 
+    public void setOld_price(Float old_price) {
+        this.old_price = old_price;
+    }
+
+    public Float getNew_price() {
+        return new_price;
+    }
+
+    public void setNew_price(Float new_price) {
+        this.new_price = new_price;
+    }
+
+    public Float getDiscount_rate() {
+        return discount_rate;
+    }
+
+    public void setDiscount_rate(Float discount_rate) {
+        this.discount_rate = discount_rate;
+    }
+
+    public Boolean getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(Boolean is_favorite) {
+        this.is_favorite = is_favorite;
+    }
 }

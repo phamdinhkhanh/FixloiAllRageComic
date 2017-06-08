@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,12 +18,14 @@ import butterknife.ButterKnife;
 
 public class RageComicDetailsFragment extends Fragment {
   private static String TAG = RageComicDetailsFragment.class.toString();
-  @BindView(R.id.detail_name)
+  @BindView(R.id.tv_name_detail)
   TextView name;
-  @BindView(R.id.comic_image_detail)
+  @BindView(R.id.im_comic_detail)
   ImageView imageView;
-  @BindView(R.id.description)
+  @BindView(R.id.tv_description)
   TextView description;
+  @BindView(R.id.bt_buy)
+  Button bt_buy;
 
   public RageComic rageComic;
 
@@ -48,5 +51,12 @@ public class RageComicDetailsFragment extends Fragment {
     Picasso.with(getContext()).load(rageComic.getUrlPic()).into(imageView);
     String mDescription = rageComic.getDescription();
     description.setText(mDescription);
+
+    bt_buy.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+      }
+    });
   }
 }

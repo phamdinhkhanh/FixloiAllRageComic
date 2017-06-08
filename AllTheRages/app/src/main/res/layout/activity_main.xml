@@ -18,6 +18,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_task"
+        app:itemTextColor="@android:color/background_dark"
         app:menu="@menu/activity_task_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

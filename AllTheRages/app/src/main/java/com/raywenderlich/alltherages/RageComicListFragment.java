@@ -1,5 +1,6 @@
 package com.raywenderlich.alltherages;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.raywenderlich.alltherages.adapter.RageComicAdapter;
 import com.raywenderlich.alltherages.eventbus.RageComicReturn;
@@ -24,6 +26,7 @@ public class RageComicListFragment extends Fragment{
   @BindView(R.id.recycler_view)
   RecyclerView recyclerView;
   private FragmentListener fragmentListener;
+  private Boolean onPause = true;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,9 +36,16 @@ public class RageComicListFragment extends Fragment{
     return view;
   }
 
-  public void onDestroy(){
-    super.onDestroy();
-    EventBus.getDefault().register(this);
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    fragmentListener = (FragmentListener) context;
+  }
+
+  @Override
+  public void onDestroyView(){
+    super.onDestroyView();
+    EventBus.getDefault().unregister(this);
   }
 
   private void setupUI(View view) {
@@ -45,8 +55,10 @@ public class RageComicListFragment extends Fragment{
       Log.d(TAG,String.format("recyclerView is null"));
     }
     recyclerView.setAdapter(rageComicAdapter);
-    recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+    //recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+    recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
   }
+
   @Subscribe
   public void onChangeFragment(RageComicReturn rageComicReturn){
     RageComicDetailsFragment rageComicDetailsFragment = new RageComicDetailsFragment();

@@ -32,11 +32,19 @@
   <dimen name="recycler_item_footer_padding">16dp</dimen>
 
   <!-- Rage comic detail -->
-  <dimen name="rage_comic_image_size">200dp</dimen>
-  <dimen name="rage_comic_image_margin_vertical">24dp</dimen>
+  <dimen name="rage_comic_image_height">150dp</dimen>
+  <dimen name="rage_comic_image_width">110dp</dimen>
+  <dimen name="rage_comic_image_margin_vertical">12dp</dimen>
   <dimen name="rage_comic_name_margin_top">24dp</dimen>
   <dimen name="rage_comic_description_margin_left">32dp</dimen>
   <dimen name="rage_comic_description_margin_right">24dp</dimen>
   <dimen name="rage_comic_description_margin_bottom">16dp</dimen>
+  <dimen name="rage_comic_image_right">12dp</dimen>
+  <dimen name="rage_comic_text_width">80dp</dimen>
+  <dimen name="image_shopping_width">46dp</dimen>
+  <dimen name="image_shopping_height">46dp</dimen>
+
+  <!-- Recycler item rage comic height -->
+  <dimen name="fragment_recycler_item_rage_comic_height">215dp</dimen>
 
 </resources>
