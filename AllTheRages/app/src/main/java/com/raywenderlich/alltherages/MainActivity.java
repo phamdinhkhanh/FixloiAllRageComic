@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.raywenderlich.alltherages.database.DBContext;
+import com.raywenderlich.alltherages.database.RageManager;
 import com.raywenderlich.alltherages.utils.CircleTransform;
 import com.raywenderlich.alltherages.utils.FragmentListener;
 import com.raywenderlich.alltherages.utils.SharedPref;
@@ -32,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    loadData();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setItemIconTintList(null);
     navigationView.setNavigationItemSelectedListener(this);
-
     View header = navigationView.getHeaderView(0);
     CircleImageView civ_user = (CircleImageView) header.findViewById(R.id.civ_user);
     TextView tv_username = (TextView) header.findViewById(R.id.tv_username);
@@ -57,11 +59,6 @@ public class MainActivity extends AppCompatActivity implements
 
     tv_email_facebook.setText(i.getStringExtra("email"));
     tv_mobile.setText(i.getStringExtra("phone_number"));
-
-    if (savedInstanceState == null) {
-      RageComicListFragment rageComicListFragment = new RageComicListFragment();
-      onChangeFragment(rageComicListFragment,false);
-    }
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -86,13 +83,32 @@ public class MainActivity extends AppCompatActivity implements
               onBackPressed();
             }
           });
-        }else{
+        } else {
           toggle.setDrawerIndicatorEnabled(true);
           toggle.setToolbarNavigationClickListener(null);
         }
       }
     });
   }
+
+  public void loadData(){
+    RageManager.instance.getRageFromServer();
+    RageManager.instance.setRageListener(new RageManager.GetRageListener() {
+         @Override
+         public void onGetAllRage(boolean ok) {
+           if(ok){
+             RageComicListFragment rageComicListFragment = new RageComicListFragment();
+             onChangeFragment(rageComicListFragment,false);
+           }
+           else {
+             DBContext.instance.getAllRageComic();
+             RageComicListFragment rageComicListFragment = new RageComicListFragment();
+             onChangeFragment(rageComicListFragment,false);
+           }
+         }
+      });
+    }
+
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu){

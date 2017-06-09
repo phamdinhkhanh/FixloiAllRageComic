@@ -1,42 +1,34 @@
-package com.raywenderlich.alltherages.networks.jsonmodels;
+package com.raywenderlich.alltherages.database.model;
 
 import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
+import com.raywenderlich.alltherages.networks.jsonmodels.UserRegisterResponseJson;
 
 /**
- * Created by laptopTCC on 6/2/2017.
+ * Created by laptopTCC on 6/8/2017.
  */
 
-public class UserRegisterResponseJson {
-    @SerializedName("id")
+public class User {
+    //@PrimaryKey
     private String idUser;
-    @SerializedName("username")
     private String username;
-    @SerializedName("password")
     private String password;
-    @SerializedName("token")
     private String token;
-    @SerializedName("address")
     private String address;
-    @SerializedName("address_order")
     private String address_order;
-    @SerializedName("phone_number")
     private String phone_number;
-    @SerializedName("total_spend")
     private String totalSpend;
-    @SerializedName("urlPic")
     private String urlPic;
-    @SerializedName("urlFb")
     private String urlFb;
-    /*@SerializedName("rages_like")
-    private RageResponseJson rages_like;*/
-    /*@SerializedName("comment")
-    private CommentResponseJson comment;*/
+    //private RageResponseJson rages_like;
+    //private CommentResponseJson comment;
+    /*@SerializedName("_id")
+    private UserRegisterResponseJson.Id Id;*/
 
+    public User(){
 
-    @SerializedName("_id")
-    private Id Id;
+    }
 
     public static class Id {
 
@@ -55,24 +47,24 @@ public class UserRegisterResponseJson {
 
     }
 
-    public UserRegisterResponseJson(String idUser, String totalSpend, UserRegisterResponseJson.Id id) {
+    public User(String idUser, String totalSpend, UserRegisterResponseJson.Id id) {
         this.idUser = idUser;
         this.totalSpend = totalSpend;
-        this.Id = id;
+        //this.Id = id;
     }
 
-    public UserRegisterResponseJson(String username, String password, String token) {
+    public User(String username, String password, String token) {
         this.username = username;
         this.password = password;
         this.token = token;
     }
 
-    public UserRegisterResponseJson(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public UserRegisterResponseJson(Uri linkUri, String token){
+    public User(Uri linkUri, String token){
         this.token = token;
     }
 
@@ -118,13 +110,13 @@ public class UserRegisterResponseJson {
         this.totalSpend = totalSpend;
     }
 
-    public UserRegisterResponseJson.Id getId() {
+    /*public UserRegisterResponseJson.Id getId() {
         return Id;
     }
 
     public void setId(UserRegisterResponseJson.Id id) {
         Id = id;
-    }
+    }*/
 
     public String getAddress() {
         return address;
@@ -174,22 +166,20 @@ public class UserRegisterResponseJson {
         this.rages_like = rages_like;
     }*/
 
-   /* public CommentResponseJson getComment() {
+    /*public CommentResponseJson getComment() {
         return comment;
-    }
+    }*/
 
-    public void setComment(CommentResponseJson comment) {
+    /*public void setComment(CommentResponseJson comment) {
         this.comment = comment;
     }*/
 
     @Override
     public String toString() {
-        return "UserRegisterResponseJson{" +
+        return "User {" +
                 "idUser='" + idUser + '\'' +
                 ", totalSpend='" + totalSpend + '\'' +
-                ", Id=" + Id +
                 ", token='" + token + '\'' +
                 '}';
     }
-
 }

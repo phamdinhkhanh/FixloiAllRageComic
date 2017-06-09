@@ -25,9 +25,9 @@ public class RageResponseJson {
     private Boolean is_favorite;
 
     public static class ID{
+
         @SerializedName("$oid")
         private String oid;
-
         public ID(String oid){
             this.oid = oid;
         }
@@ -39,10 +39,20 @@ public class RageResponseJson {
         public void setOid(String oid) {
             this.oid = oid;
         }
-    }
 
+    }
     public RageResponseJson(ID id,String name, String url, String description, Float old_price, Float new_price, Float discount_rate, Boolean is_favorite) {
         this.id = id;
+        this.name = name;
+        this.url = url;
+        this.description = description;
+        this.old_price = old_price;
+        this.new_price = new_price;
+        this.discount_rate = discount_rate;
+        this.is_favorite = is_favorite;
+    }
+
+    public RageResponseJson(String name, String url, String description, Float old_price, Float new_price, Float discount_rate, Boolean is_favorite) {
         this.name = name;
         this.url = url;
         this.description = description;
@@ -114,5 +124,19 @@ public class RageResponseJson {
 
     public void setIs_favorite(Boolean is_favorite) {
         this.is_favorite = is_favorite;
+    }
+
+    @Override
+    public String toString() {
+        return "RageResponseJson{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", old_price=" + old_price +
+                ", new_price=" + new_price +
+                ", discount_rate=" + discount_rate +
+                ", is_favorite=" + is_favorite +
+                '}';
     }
 }

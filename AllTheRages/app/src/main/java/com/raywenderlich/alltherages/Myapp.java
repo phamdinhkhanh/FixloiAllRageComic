@@ -11,13 +11,9 @@ import com.raywenderlich.alltherages.utils.SharedPref;
 
 public class Myapp extends Application {
     @Override
-    public void onCreate(){
-        try {
-            super.onCreate();
-            SharedPref.setInstance(this);
-            DBContext.setInstance(this);
-        } catch (Exception e){
-            throw new RuntimeException(e.toString());
-        }
+    public void onCreate() {
+        super.onCreate();
+        SharedPref.setInstance(this);
+        DBContext.setInstance(this);
     }
 }

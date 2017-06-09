@@ -28,7 +28,7 @@ public class RageComicViewHolder extends RecyclerView.ViewHolder{
         ButterKnife.bind(this,itemView);
     }
     public void bindData(RageComic rageComic){
-        Picasso.with(itemView.getContext()).load(rageComic.getUrlPic()).into(mImageView);
+        Picasso.with(itemView.getContext()).load(rageComic.getUrl()).into(mImageView);
         name.setText(rageComic.getName());
     }
 }

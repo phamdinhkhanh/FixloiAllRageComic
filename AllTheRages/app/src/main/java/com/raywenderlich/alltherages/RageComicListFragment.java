@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.raywenderlich.alltherages.adapter.RageComicAdapter;
+import com.raywenderlich.alltherages.adapter.RageComicAdapterAustralia;
+import com.raywenderlich.alltherages.adapter.RageComicAdapterFrance;
+import com.raywenderlich.alltherages.adapter.RageComicAdapterGermany;
 import com.raywenderlich.alltherages.eventbus.RageComicReturn;
 import com.raywenderlich.alltherages.utils.FragmentListener;
 
@@ -23,8 +25,12 @@ import butterknife.ButterKnife;
 
 public class RageComicListFragment extends Fragment{
   private static String TAG = RageComicListFragment.class.toString();
-  @BindView(R.id.recycler_view)
-  RecyclerView recyclerView;
+  @BindView(R.id.recycler_view_france)
+  RecyclerView recyclerViewFrance;
+  @BindView(R.id.recycler_view_germany)
+  RecyclerView recyclerViewGermany;
+  @BindView(R.id.recycler_view_australia)
+  RecyclerView recyclerViewAustralia;
   private FragmentListener fragmentListener;
   private Boolean onPause = true;
 
@@ -50,13 +56,19 @@ public class RageComicListFragment extends Fragment{
 
   private void setupUI(View view) {
     ButterKnife.bind(this,view);
-    RageComicAdapter rageComicAdapter = new RageComicAdapter();
-    if (recyclerView == null){
-      Log.d(TAG,String.format("recyclerView is null"));
+    RageComicAdapterFrance rageComicAdapterFrance = new RageComicAdapterFrance();
+    RageComicAdapterGermany rageComicAdapterGermany = new RageComicAdapterGermany();
+    RageComicAdapterAustralia rageComicAdapterAustralia = new RageComicAdapterAustralia();
+    if (recyclerViewFrance == null){
+      Log.d(TAG,String.format("recyclerViewFrance is null"));
     }
-    recyclerView.setAdapter(rageComicAdapter);
+    recyclerViewFrance.setAdapter(rageComicAdapterFrance);
     //recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-    recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
+    recyclerViewFrance.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
+    recyclerViewGermany.setAdapter(rageComicAdapterGermany);
+    recyclerViewGermany.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
+    recyclerViewAustralia.setAdapter(rageComicAdapterAustralia);
+    recyclerViewAustralia.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
   }
 
   @Subscribe

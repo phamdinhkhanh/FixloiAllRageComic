@@ -1,15 +1,11 @@
 package com.raywenderlich.alltherages.networks.jsonmodels;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
 /**
  * Created by laptopTCC on 6/2/2017.
  */
 
 public class LoginBodyJson {
-    @SerializedName("userID")
+    /*@SerializedName("userID")
     private String userID;
     @SerializedName("username")
     private String username;
@@ -186,5 +182,5 @@ public class LoginBodyJson {
 
     public void setRageResponseJsonList(List<RageResponseJson> rageResponseJsonList) {
         this.rageResponseJsonList = rageResponseJsonList;
-    }
+    }*/
 }

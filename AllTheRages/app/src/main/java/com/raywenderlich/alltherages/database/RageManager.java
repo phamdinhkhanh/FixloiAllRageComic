@@ -21,12 +21,26 @@ public class RageManager {
     public static String TAG = RageManager.class.toString();
     public static RageManager instance = new RageManager();
     private RageService rageManager = NetContext.instance.create(RageService.class);
-    private RageManager(){
+    public GetRageListener rageListener;
 
+    public interface GetRageListener{
+        void onGetAllRage(boolean ok);
     };
 
+    public GetRageListener getRageListener() {
+        return rageListener;
+    }
+
+    public void setRageListener(GetRageListener rageListener) {
+        this.rageListener = rageListener;
+    }
+
+    private RageManager(){
+
+    }
+
     //1.Get all rage
-    public void getRageManager(){
+    public boolean getRageFromServer(){
         rageManager.getRages().enqueue(new Callback<List<RageResponseJson>>() {
             @Override
             public void onResponse(Call<List<RageResponseJson>> call, Response<List<RageResponseJson>> response) {
@@ -44,21 +58,25 @@ public class RageManager {
                                 r.getIs_favorite()
                         ));
                     }
+                    Log.d(TAG,String.format("getAllRageComicFromServer: "));
+                    getRageListener().onGetAllRage(true);
                 }
             }
 
             @Override
             public void onFailure(Call<List<RageResponseJson>> call, Throwable t) {
                 Log.d(TAG, String.format("onFailure: get all task %s", t.getCause()));
+                getRageListener().onGetAllRage(false);
             }
         });
+        return true;
     }
 
     //2.add newRage
     public void addNewRage(final RageComic r){
-        RageResponseJson.ID id = new RageResponseJson.ID(r.getOid());
-        RageResponseJson rageComic = new RageResponseJson(
-                id,
+
+        RageResponseJson rageComic;
+        rageComic = new RageResponseJson(
                 r.getName(),
                 r.getUrl(),
                 r.getDescription(),
@@ -71,13 +89,20 @@ public class RageManager {
         rageManager.addNewRage(rageComic).enqueue(new Callback<RageResponseJson>() {
             @Override
             public void onResponse(Call<RageResponseJson> call, Response<RageResponseJson> response) {
-
+                if(response.code() == 200){
+                    Log.d(TAG,String.format("Add new RageComic Success: ResponseCode: %s, Rage: %s",response.code(),
+                            response.body().toString()));
+                } else {
+                    Log.d(TAG,String.format("Could not post RageComic: ResponseCode: %s", response.code()));
+                }
             }
 
             @Override
             public void onFailure(Call<RageResponseJson> call, Throwable t) {
-
+                Log.d(TAG,"Fail to post new RageComic");
             }
         });
     }
+
+    //3.
 }

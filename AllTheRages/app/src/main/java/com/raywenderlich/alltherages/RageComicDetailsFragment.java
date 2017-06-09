@@ -47,8 +47,8 @@ public class RageComicDetailsFragment extends Fragment {
     ButterKnife.bind(this,view);
     String mName = rageComic.getName();
     name.setText(mName);
-    Log.d(TAG,String.format("Url comic:%s",rageComic.getUrlPic()));
-    Picasso.with(getContext()).load(rageComic.getUrlPic()).into(imageView);
+    Log.d(TAG,String.format("Url comic:%s",rageComic.getUrl()));
+    Picasso.with(getContext()).load(rageComic.getUrl()).into(imageView);
     String mDescription = rageComic.getDescription();
     description.setText(mDescription);
 

@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by laptopTCC on 5/27/2017.
  */
 
-public class RageComic extends RealmObject{
+public class RageComic extends RealmObject {
     @PrimaryKey
     private String oid;
     private String name;
@@ -18,6 +18,9 @@ public class RageComic extends RealmObject{
     private Float discount_rate;
     private Boolean is_favorite;
 
+    public RageComic(){
+
+    }
 
     public RageComic(String oid, String name, String url, String description, Float old_price, Float new_price, Float discount_rate, Boolean is_favorite) {
         this.oid = oid;
@@ -30,6 +33,12 @@ public class RageComic extends RealmObject{
         this.is_favorite = is_favorite;
     }
 
+
+    public RageComic(String url,String name, String description) {
+        this.name = name;
+        this.url = url;
+        this.description = description;
+    }
 
     public String getOid() {
         return oid;
@@ -93,5 +102,19 @@ public class RageComic extends RealmObject{
 
     public void setIs_favorite(Boolean is_favorite) {
         this.is_favorite = is_favorite;
+    }
+
+    @Override
+    public String toString() {
+        return "RageComic{" +
+                "oid='" + oid + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", old_price=" + old_price +
+                ", new_price=" + new_price +
+                ", discount_rate=" + discount_rate +
+                ", is_favorite=" + is_favorite +
+                '}';
     }
 }
