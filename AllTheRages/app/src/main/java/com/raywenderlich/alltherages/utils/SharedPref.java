@@ -29,6 +29,7 @@ public class SharedPref {
     private final String PASSWORD = "password";
     private final String DESCRIPTION = "description";//mo ta cua ragecomic
     private final String URL_RAGE_PIC = "url_rage_pic";//hinh anh cau ragecomic.
+    private final String TOTAL_SPEND = "totalspend";
     private SharedPreferences sharedPreferences;
     Gson gson ;
     public SharedPreferences.Editor editor;
@@ -106,6 +107,7 @@ public class SharedPref {
         return sharedPreferences.getString(URL_RAGE_PIC, null);
     }
 
+    public float getTotalspend() {return sharedPreferences.getFloat(TOTAL_SPEND, Float.parseFloat(null));}
     ///put
 
 
@@ -153,6 +155,8 @@ public class SharedPref {
     public void putCount(int count) {
         sharedPreferences.edit().putInt(COUNT, count).apply();
     }
+
+    public void putTotalSpend(Float totalSpend) {sharedPreferences.edit().putFloat(TOTAL_SPEND, totalSpend).apply();}
 
 
     public String getAccessToken() {

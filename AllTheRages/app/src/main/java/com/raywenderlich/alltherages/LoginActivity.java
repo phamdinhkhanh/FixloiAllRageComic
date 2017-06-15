@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         dialogPhone = new Dialog(this);
-        dialogPhone.setContentView(R.layout.phone_enter);
+        dialogPhone.setContentView(R.layout.dialog_phone_enter);
         dialogPhone.setTitle("UPDATE PHONE");
 
         bt_loginFacebook = (LoginButton) findViewById(R.id.bt_loginFaceBook);

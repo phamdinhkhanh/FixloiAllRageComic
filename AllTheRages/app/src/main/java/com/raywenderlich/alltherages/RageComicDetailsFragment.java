@@ -1,5 +1,6 @@
 package com.raywenderlich.alltherages;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class RageComicDetailsFragment extends Fragment {
   TextView description;
   @BindView(R.id.bt_buy)
   Button bt_buy;
+  Dialog dialog_buy;
 
   public RageComic rageComic;
 
@@ -39,6 +41,9 @@ public class RageComicDetailsFragment extends Fragment {
     View view = layoutInflater.inflate(R.layout.fragment_rage_comic_details,
             container,
             false);
+    dialog_buy = new Dialog(this.getContext());
+    dialog_buy.setContentView(R.layout.dialog_buy);
+    dialog_buy.setTitle("BUY RAGE");
     setupUI(view);
     return view;
   }
@@ -55,7 +60,7 @@ public class RageComicDetailsFragment extends Fragment {
     bt_buy.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
+          dialog_buy.show();
       }
     });
   }

@@ -1,7 +1,8 @@
 package com.raywenderlich.alltherages.networks.services;
 
-import com.raywenderlich.alltherages.networks.jsonmodels.DeleteResponseJson;
+import com.raywenderlich.alltherages.database.model.OrderRequest;
 import com.raywenderlich.alltherages.networks.jsonmodels.OrderResponseJson;
+import com.raywenderlich.alltherages.networks.jsonmodels.DeleteResponseJson;
 import com.raywenderlich.alltherages.networks.jsonmodels.UserRegisterResponseJson;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import retrofit2.http.Path;
 public interface OrderServices {
     //Post new order
     @POST("order")
-    Call<OrderResponseJson> orderResponseJsonCall(@Body OrderResponseJson rage);
+    Call<OrderResponseJson> postNewOrder(@Body OrderRequest rage);
     //add total customer spend when order success
     @GET("order")
     Call<List<OrderResponseJson>> getAllOrder();

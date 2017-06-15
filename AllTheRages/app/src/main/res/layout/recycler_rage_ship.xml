@@ -2,13 +2,16 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="@dimen/rage_comic_image_width"
+             android:layout_width="match_parent"
              android:layout_height="@dimen/fragment_recycler_item_rage_comic_height"
              android:orientation="vertical"
              android:layout_margin="@dimen/recycler_layout_spacing"
              style="@style/TextAppearance.AppCompat.Subhead.Inverse"
-    android:weightSum="1">
-
+    >
+  <RelativeLayout
+      android:id="@+id/rl_rage_comic"
+      android:layout_width="@dimen/rage_comic_image_width"
+      android:layout_height="215dp">
   <ImageView
       android:id="@+id/im_comic"
       android:layout_width="@dimen/rage_comic_image_width"
@@ -87,5 +90,58 @@
       android:layout_alignBottom="@+id/tv_name"
       android:layout_toRightOf="@+id/tv_price"
       android:layout_below="@+id/tv_price" />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="210dp"
+      android:layout_height="215dp"
+      android:layout_toRightOf="@+id/rl_rage_comic"
+      android:layout_marginLeft="12dp"
+      android:background="@color/colorWhite"
+      android:src="@drawable/akana"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentEnd="true"
+      android:gravity="center_vertical"
+      android:padding="12dp">
+    <TextView
+      android:id="@+id/tv_date_order"
+      android:layout_centerVertical="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Ngày        :"
+      android:textSize="20dp"
+      android:textColor="@color/colorBlack"
+        />
+    <TextView
+        android:id="@+id/tv_sl_order"
+        android:layout_below="@id/tv_date_order"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số lượng  :"
+        android:textSize="20dp"
+        android:textColor="@color/colorBlack" />
 
+    <TextView
+        android:id="@+id/tv_total_spend_order"
+        android:layout_below="@id/tv_sl_order"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng tiền  :"
+        android:textSize="20dp"
+        android:textColor="@color/colorBlack"
+        />
+
+    <TextView
+        android:id="@+id/tv_isSuccess_order"
+        android:layout_below="@id/tv_total_spend_order"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đã chuyển:"
+        android:textSize="20dp"
+        android:textColor="@color/colorBlack"
+        />
+
+  </RelativeLayout>
 </RelativeLayout>

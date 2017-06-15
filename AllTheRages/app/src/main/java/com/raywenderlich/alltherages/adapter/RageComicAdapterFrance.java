@@ -1,5 +1,7 @@
 package com.raywenderlich.alltherages.adapter;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.adapter.viewholder.RageComicViewHolder;
 import com.raywenderlich.alltherages.database.DBContext;
 import com.raywenderlich.alltherages.database.model.RageComic;
+import com.raywenderlich.alltherages.eventbus.RageComicBuy;
 import com.raywenderlich.alltherages.eventbus.RageComicReturn;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,6 +33,7 @@ public class RageComicAdapterFrance extends RecyclerView.Adapter<RageComicViewHo
         return new RageComicViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(RageComicViewHolder holder, int position) {
         //RageManager.instance.getRageManager();
@@ -44,6 +48,12 @@ public class RageComicAdapterFrance extends RecyclerView.Adapter<RageComicViewHo
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new RageComicReturn(rageComic));
+            }
+        });
+        holder.getBtn_buyrage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new RageComicBuy(rageComic));
             }
         });
     }

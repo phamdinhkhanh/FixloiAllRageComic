@@ -2,9 +2,12 @@ package com.raywenderlich.alltherages.database;
 
 import android.util.Log;
 
+import com.raywenderlich.alltherages.database.model.OrderRequest;
 import com.raywenderlich.alltherages.database.model.RageComic;
 import com.raywenderlich.alltherages.networks.NetContext;
+import com.raywenderlich.alltherages.networks.jsonmodels.OrderResponseJson;
 import com.raywenderlich.alltherages.networks.jsonmodels.RageResponseJson;
+import com.raywenderlich.alltherages.networks.services.OrderServices;
 import com.raywenderlich.alltherages.networks.services.RageService;
 
 import java.util.List;
@@ -17,10 +20,11 @@ import retrofit2.Response;
  * Created by laptopTCC on 6/8/2017.
  */
 
-public class RageManager {
-    public static String TAG = RageManager.class.toString();
-    public static RageManager instance = new RageManager();
+public class RequestServerManager {
+    public static String TAG = RequestServerManager.class.toString();
+    public static RequestServerManager instance = new RequestServerManager();
     private RageService rageManager = NetContext.instance.create(RageService.class);
+    private OrderServices orderManager = NetContext.instance.create(OrderServices.class);
     public GetRageListener rageListener;
 
     public interface GetRageListener{
@@ -35,10 +39,10 @@ public class RageManager {
         this.rageListener = rageListener;
     }
 
-    private RageManager(){
+    public RequestServerManager(){
 
     }
-
+//==========================================RageManager===============================================//
     //1.Get all rage
     public boolean getRageFromServer(){
         rageManager.getRages().enqueue(new Callback<List<RageResponseJson>>() {
@@ -104,5 +108,26 @@ public class RageManager {
         });
     }
 
-    //3.
+    //==========================================OrderManager===============================================//
+    //3.Post new order
+    public void postNewOrder(final OrderRequest orderRequest){
+        //final OrderResponseJson orderResponseJson;
+        orderManager.postNewOrder(orderRequest).enqueue(new Callback<OrderResponseJson>() {
+            @Override
+            public void onResponse(Call<OrderResponseJson> call, Response<OrderResponseJson> response) {
+                Log.d(TAG,String.format("postNewOrder: %s", response.code()));
+                if (response.code() == 200){
+                    Log.d(TAG,String.format("Post new Order success: ResponseCode: %s, OrderResponseJson: %s",response.code(),
+                            response.body().toString()));
+                } else {
+                    Log.d(TAG,String.format("Could not post OrderResponseJson: ResponseCode: %s", response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OrderResponseJson> call, Throwable t) {
+                Log.d(TAG,"Fail to post new Order");
+            }
+        });
+    }
 }

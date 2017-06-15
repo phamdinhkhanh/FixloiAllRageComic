@@ -16,10 +16,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.raywenderlich.alltherages.database.DBContext;
-import com.raywenderlich.alltherages.database.RageManager;
+import com.raywenderlich.alltherages.database.RequestServerManager;
 import com.raywenderlich.alltherages.utils.CircleTransform;
 import com.raywenderlich.alltherages.utils.FragmentListener;
 import com.raywenderlich.alltherages.utils.SharedPref;
@@ -31,12 +32,17 @@ public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,FragmentListener, SearchView.OnQueryTextListener{
   public static String TAG = MainActivity.class.toString();
   ActionBarDrawerToggle toggle;
+  FrameLayout fl_cart;
+  FrameLayout circle;
+  TextView countTextView;
+  int count;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    loadData();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    loadData();
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setItemIconTintList(null);
     navigationView.setNavigationItemSelectedListener(this);
@@ -92,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements
   }
 
   public void loadData(){
-    RageManager.instance.getRageFromServer();
-    RageManager.instance.setRageListener(new RageManager.GetRageListener() {
+    RequestServerManager.instance.getRageFromServer();
+    RequestServerManager.instance.setRageListener(new RequestServerManager.GetRageListener() {
          @Override
          public void onGetAllRage(boolean ok) {
            if(ok){
@@ -114,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements
   public boolean onCreateOptionsMenu(Menu menu){
     getMenuInflater().inflate(R.menu.cart_menu,menu);
     final MenuItem searchItem = menu.findItem(R.id.sv_search);
+    final MenuItem shipItem = menu.findItem(R.id.action_cart);
+
     return true;
   }
 
@@ -121,10 +129,54 @@ public class MainActivity extends AppCompatActivity implements
     switch (menuItem.getItemId()) {
       case R.id.action_cart: {
         Log.d(TAG, "onOptionsItemSelected: ");
+        onChangeFragment(new ShipFragment(), true);
+        break;
+      }
+      case R.id.sv_search: {
+        Log.d(TAG, "onSearchViewItemSelected: ");
+        //do Searchview
         break;
       }
     }
     return super.onOptionsItemSelected(menuItem);
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu){
+    //Do something
+    //Nếu có đơn hàng đang chờ ship thì hiển thị thông báo
+    final MenuItem alertMenuItem = menu.findItem(R.id.action_cart);
+    FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
+    fl_cart = (FrameLayout) rootView.findViewById(R.id.fl_cart);
+    circle = (FrameLayout) rootView.findViewById(R.id.fl_noti);
+    countTextView = (TextView) rootView.findViewById(R.id.tv_count);
+    count = SharedPref.instance.getSharedPreferences().getInt("COUNT",0);
+    if (0 < count){
+      countTextView.setText(String.valueOf(count));
+      circle.setVisibility(View.VISIBLE);
+    } else {
+      circle.setVisibility(View.GONE);
+    }
+    rootView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onOptionsItemSelected(alertMenuItem);
+      }
+    });
+    return super.onPrepareOptionsMenu(menu);
+  }
+
+  @Override
+  protected void onRestart() {
+    //Khi start thì lại cho circle nhìn thấy hoặc không nhìn thấy (phụ thuộc vào số lượng.
+    count = SharedPref.instance.getSharedPreferences().getInt("COUNT", 0);
+    if (0 < count) {
+      countTextView.setText(String.valueOf(count));
+      circle.setVisibility(View.VISIBLE);
+    } else {
+      circle.setVisibility(View.GONE);
+    }
+    super.onRestart();
   }
 
   @Override
@@ -162,12 +214,12 @@ public class MainActivity extends AppCompatActivity implements
               .beginTransaction()
               .replace(R.id.fl_main, fragment,"rageComicDetails")
               .addToBackStack(null)
-              .commit();
+              .commitAllowingStateLoss();
     } else {
       getSupportFragmentManager()
               .beginTransaction()
               .replace(R.id.fl_main, fragment,"rageComicDetails")
-              .commit();
+              .commitAllowingStateLoss();
     }
   }
 
