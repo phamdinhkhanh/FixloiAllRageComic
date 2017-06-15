@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -11,6 +11,43 @@
 
     <include layout="@layout/app_bar_task"/>
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="#FFFFFF"
+        app:tabIndicatorHeight="2dp"
+        android:background="@color/colorGrey"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabSelectedTextColor="#FFFFFF"
+        app:tabTextColor="#DED8DE">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_sp"
+            android:text="SẢN PHẨM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_service"
+            android:text="DỊCH VỤ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_article"
+            android:text="TƯ VẤN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/tl_tab"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"/>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -22,4 +59,4 @@
         app:itemTextColor="@android:color/background_dark"
         app:menu="@menu/activity_task_drawer" />
 
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>
