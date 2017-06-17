@@ -1,100 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
     >
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <RelativeLayout
-        android:id="@+id/ll_1"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_tab"
         android:layout_width="match_parent"
-        android:layout_height="275dp"
-        >
-        <TextView
-            android:id="@+id/tv_type_comic1"
+        android:layout_height="35dp"
+        android:background="@color/colorGrey"
+        app:tabBackground="@color/colorBlack"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="#FFFFFF"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabTextColor="#DED8DE">
+
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NƯỚC HOA PHÁP"
-            android:textSize="16dp"
-            android:layout_marginBottom="5dp" />
+            android:background="@color/colorWhite"
+            android:text="SẢN PHẨM" />
 
-        <TextView
-            android:id="@+id/tv_them1"
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="THÊM"
-            android:layout_alignParentEnd="true"/>
+            android:background="@color/colorGrey"
+            android:text="DỊCH VỤ" />
 
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recycler_view_france"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_below="@+id/tv_type_comic1"/>
-    </RelativeLayout>
+        <android.support.design.widget.TabItem
+            android:id="@+id/ti_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:text="TƯ VẤN" />
+    </android.support.design.widget.TabLayout>
 
-    <RelativeLayout
-        android:id="@+id/ll_2"
-        android:layout_below="@id/ll_1"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="275dp">
-        <TextView
-            android:id="@+id/tv_type_comic2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NƯỚC HOA ĐỨC"
-            android:textSize="16dp"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/tv_them2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="THÊM"
-            android:layout_alignParentEnd="true" />
-
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recycler_view_germany"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_below="@+id/tv_type_comic2"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/ll_3"
-        android:layout_below="@id/ll_2"
-        android:layout_width="match_parent"
-        android:layout_height="275dp">
-        <TextView
-            android:id="@+id/tv_type_comic3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NƯỚC HOA ÚC"
-            android:textSize="16dp"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/tv_them3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="THÊM"
-            android:layout_alignParentEnd="true" />
-
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recycler_view_australia"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_below="@+id/tv_type_comic3"/>
-    </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

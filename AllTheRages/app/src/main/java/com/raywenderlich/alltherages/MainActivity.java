@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements
   TextView countTextView;
   int count;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     loadData();
+
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setItemIconTintList(null);
     navigationView.setNavigationItemSelectedListener(this);
@@ -205,7 +205,6 @@ public class MainActivity extends AppCompatActivity implements
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
-
 
   @Override
   public void onChangeFragment(Fragment fragment, boolean addToBackStack) {

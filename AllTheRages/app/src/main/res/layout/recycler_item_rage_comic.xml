@@ -5,7 +5,6 @@
              android:layout_width="@dimen/rage_comic_image_width"
              android:layout_height="@dimen/fragment_recycler_item_rage_comic_height"
              android:orientation="vertical"
-             android:layout_margin="@dimen/recycler_layout_spacing"
              style="@style/TextAppearance.AppCompat.Subhead.Inverse"
     android:weightSum="1">
 
@@ -39,7 +38,9 @@
       android:layout_height="wrap_content"
       android:textColor="@color/colorBlack"
       android:textSize="12sp"
-      android:layout_below="@id/im_comic"/>
+      android:layout_below="@+id/im_comic"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
 
   <TextView
       android:id="@+id/tv_price_old"
@@ -75,7 +76,8 @@
       android:layout_centerHorizontal="true"
       android:isIndicator="true"
       android:rating="2"
-      android:numStars="5" />
+      android:numStars="5"
+      android:layout_marginBottom="10dp"/>
 
   <ImageButton
       android:id="@+id/btn_buyrage"
@@ -83,9 +85,9 @@
       android:layout_height="@dimen/image_shopping_height"
       android:background="@color/colorAccent"
       android:src="@drawable/ic_shopping_cart_white_24px"
+      android:layout_toRightOf="@+id/tv_price"
       android:layout_toEndOf="@+id/tv_price"
       android:layout_alignBottom="@+id/tv_name"
-      android:layout_toRightOf="@+id/tv_price"
       android:layout_below="@+id/tv_price" />
 
 </RelativeLayout>
