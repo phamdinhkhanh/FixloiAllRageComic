@@ -1,4 +1,4 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -53,6 +53,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
+import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.database.DBContext;
 import com.raywenderlich.alltherages.networks.NetContext;
 import com.raywenderlich.alltherages.networks.jsonmodels.Token;

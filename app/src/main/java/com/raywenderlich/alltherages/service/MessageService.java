@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.raywenderlich.alltherages.LoginActivity;
+import com.raywenderlich.alltherages.activities.LoginActivity;
 import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.eventbus.MessageEvent;
 

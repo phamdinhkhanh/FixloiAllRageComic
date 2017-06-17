@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.raywenderlich.alltherages.MainActivity;
+import com.raywenderlich.alltherages.activities.MainActivity;
 import com.raywenderlich.alltherages.R;
 
 import org.greenrobot.eventbus.EventBus;

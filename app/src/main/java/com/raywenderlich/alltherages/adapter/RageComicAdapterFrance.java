@@ -3,6 +3,7 @@ package com.raywenderlich.alltherages.adapter;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,9 @@ public class RageComicAdapterFrance extends RecyclerView.Adapter<RageComicViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new RageComicReturn(rageComic));
+                EventBus.getDefault().postSticky(new RageComicReturn(rageComic));
+                //EventBus.getDefault().post(new ChangeActivity());
+                Log.d(TAG,"clickitem: %s"+rageComic.toString());
             }
         });
         holder.getBtn_buyrage().setOnClickListener(new View.OnClickListener() {

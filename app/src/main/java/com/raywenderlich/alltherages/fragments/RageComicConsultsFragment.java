@@ -1,4 +1,4 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.fragments;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.raywenderlich.alltherages.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RageComicServicesFragment extends Fragment {
+public class RageComicConsultsFragment extends Fragment {
 
 
-    public RageComicServicesFragment() {
+    public RageComicConsultsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class RageComicServicesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rage_comic_services, container, false);
+        return inflater.inflate(R.layout.fragment_rage_comic_consults, container, false);
     }
 
 }

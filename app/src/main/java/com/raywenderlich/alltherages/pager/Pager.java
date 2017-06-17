@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.raywenderlich.alltherages.RageComicConsultsFragment;
-import com.raywenderlich.alltherages.RageComicListFragment;
-import com.raywenderlich.alltherages.RageComicServicesFragment;
+import com.raywenderlich.alltherages.fragments.RageComicConsultsFragment;
+import com.raywenderlich.alltherages.fragments.RageComicListFragment;
+import com.raywenderlich.alltherages.fragments.RageComicServicesFragment;
 
 
 public class Pager extends FragmentStatePagerAdapter {

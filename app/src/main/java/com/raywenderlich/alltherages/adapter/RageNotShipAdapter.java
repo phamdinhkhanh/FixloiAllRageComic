@@ -21,8 +21,6 @@ import com.raywenderlich.alltherages.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.List;
-
 /**
  * Created by laptopTCC on 5/27/2017.
  */
@@ -30,7 +28,6 @@ import java.util.List;
 public class RageNotShipAdapter extends RecyclerView.Adapter<RageNotShipViewHolder> implements Filterable {
     private static String TAG = RageNotShipAdapter.class.toString();
     Activity activity;
-
     public RageNotShipAdapter(Activity activity){
         this.activity = activity;
     }
@@ -45,17 +42,12 @@ public class RageNotShipAdapter extends RecyclerView.Adapter<RageNotShipViewHold
         //FoodInCardAdapter
     }
 
-    List<SingleOrder> list;
-    public void changeData(List<SingleOrder> list) {
-        this.list = list;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(final RageNotShipViewHolder holder, int position) {
         //RageManager.instance.getRageManager();
-        //get data at this position from realm
-        final SingleOrder singleOrder = list.get(position);
+        //get data at this position from realm;
+        final SingleOrder singleOrder = DBContext.instance.getAllSingleOrder().get(position);
         //Log.d(TAG,String.format("allSingleOrder: %s",list.toString()));
         final int sl = singleOrder.getCount();
         //final String mName = rageComic.getName();
@@ -110,7 +102,7 @@ public class RageNotShipAdapter extends RecyclerView.Adapter<RageNotShipViewHold
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return DBContext.instance.getAllSingleOrder().size();
     }
 
     @Override

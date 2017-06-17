@@ -1,4 +1,4 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.database.model.RageComic;
 import com.squareup.picasso.Picasso;
 

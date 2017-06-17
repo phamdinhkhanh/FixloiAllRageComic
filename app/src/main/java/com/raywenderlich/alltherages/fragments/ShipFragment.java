@@ -1,4 +1,4 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.fragments;
 
 
 import android.content.DialogInterface;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.adapter.RageNotShipAdapter;
 import com.raywenderlich.alltherages.database.DBContext;
 import com.raywenderlich.alltherages.database.model.SingleOrder;
@@ -26,8 +27,6 @@ import com.raywenderlich.alltherages.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +45,7 @@ public class ShipFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ship, container, false);
         setupUI(view);
-        loadDataForAdapter();
+        //loadDataForAdapter();
         return view;
     }
 
@@ -65,12 +64,11 @@ public class ShipFragment extends Fragment {
         rvNotShipFood.setLayoutManager(new LinearLayoutManager(this.getContext()));
     }
 
-    private void loadDataForAdapter(){
+    /*private void loadDataForAdapter(){
         List<SingleOrder> list = DBContext.instance.getAllSingleOrder();
         rageNotShipAdapter.changeData(list);
 
-    }
-
+    }*/
 
     public void onDestroy(){
         EventBus.getDefault().unregister(this);

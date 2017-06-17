@@ -1,4 +1,4 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.raywenderlich.alltherages.R;
 import com.raywenderlich.alltherages.database.DBContext;
 import com.raywenderlich.alltherages.database.RequestServerManager;
+import com.raywenderlich.alltherages.fragments.BuyFragment;
+import com.raywenderlich.alltherages.fragments.ChatFragment;
+import com.raywenderlich.alltherages.fragments.CustomerFragment;
+import com.raywenderlich.alltherages.fragments.ScheduleFragment;
 import com.raywenderlich.alltherages.pager.Pager;
 import com.raywenderlich.alltherages.utils.CircleTransform;
 import com.raywenderlich.alltherages.utils.FragmentListener;
@@ -142,7 +147,9 @@ public class MainActivity extends AppCompatActivity implements
     switch (menuItem.getItemId()) {
       case R.id.action_cart: {
         Log.d(TAG, "onOptionsItemSelected: ");
-        onChangeFragment(new ShipFragment(), true);
+        //onChangeFragment(new ShipFragment(), true);
+        Intent i = new Intent(this,ShipActivity.class);
+        startActivity(i);
         break;
       }
       case R.id.sv_search: {

@@ -1,7 +1,8 @@
-package com.raywenderlich.alltherages;
+package com.raywenderlich.alltherages.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
+import com.raywenderlich.alltherages.R;
+import com.raywenderlich.alltherages.activities.RageActivity;
+import com.raywenderlich.alltherages.activities.ShipActivity;
 import com.raywenderlich.alltherages.adapter.RageComicAdapterAustralia;
 import com.raywenderlich.alltherages.adapter.RageComicAdapterFrance;
 import com.raywenderlich.alltherages.adapter.RageComicAdapterGermany;
@@ -86,44 +90,54 @@ public class RageComicListFragment extends Fragment{
     recyclerViewAustralia.setLayoutManager(new GridLayoutManager(this.getContext(), 1, LinearLayout.HORIZONTAL, false));
   }
 
+  //chuyen toi rageActivity
   @Subscribe
-  public void onChangeRageDetailFragment(RageComicReturn rageComicReturn){
-    RageComicDetailsFragment rageComicDetailsFragment = new RageComicDetailsFragment();
+  public void ChangeActivity(RageComicReturn rage){
+    RageActivity.rageComic = rage.getRageComic();
+    Intent i = new Intent(getActivity(), RageActivity.class);
+    startActivity(i);
+    /*RageComicDetailsFragment rageComicDetailsFragment = new RageComicDetailsFragment();
     rageComicDetailsFragment.setRageComic(rageComicReturn.getRageComic());
     getFragmentManager().beginTransaction()
                         .replace(R.id.fl_main, rageComicDetailsFragment)
                         .addToBackStack(null)
-                        .commit();
+                        .commit();*/
   }
 
-  @Subscribe
-  public void onChangeShipFragment(final RageComicBuy rageComicBuy){
-      //1. Lấy Được RageComic
-      RageComic rageComic = rageComicBuy.getRageComic();
-      //2. Tạo đơn hàng mặc định với số lượng là 1
-      SingleOrder singleOrder = new SingleOrder(rageComic,1);
-      //3. Check xem co rageComic trong order chua
-      if(DBContext.instance.findRageComicSingleOrder(rageComicBuy.getRageComic())){
-        Toast.makeText(this.getContext(), "Đã tồn tại trong giỏ hàng", Toast.LENGTH_SHORT).show();
-      } else {
-        //4. Lưu vào DBContext
-        DBContext.instance.addOrUpdate(singleOrder);
-        //5. Chuyển shipFragment
-        onChangeShipFragment();
-      }
-  }
+
 
   @Override
   public void onPause(){
       super.onPause();
   }
 
-    private void onChangeShipFragment() {
-        
-        ShipFragment shipFragment = new ShipFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fl_main, shipFragment)
-                .addToBackStack(null)
-                .commit();
+  //chuyen luu don hang vao DBContext va chuyen toi ShipActitivy
+  @Subscribe
+  public void getSingleOrder(final RageComicBuy rageComicBuy){
+    //1. Lấy Được RageComic
+    RageComic rageComic = rageComicBuy.getRageComic();
+    //2. Tạo đơn hàng mặc định với số lượng là 1
+    SingleOrder singleOrder = new SingleOrder(rageComic,1);
+    //3. Check xem co rageComic trong order chua
+    if(DBContext.instance.findRageComicSingleOrder(rageComicBuy.getRageComic())){
+      Toast.makeText(this.getContext(), "Đã tồn tại trong giỏ hàng", Toast.LENGTH_SHORT).show();
+    } else {
+      //4. Lưu vào DBContext
+      DBContext.instance.addOrUpdate(singleOrder);
+      //5. Chuyển shipActivity
+      if(DBContext.instance.getAllSingleOrder() != null){
+        changeShipActivity();
+      }
     }
+  }
+
+  private void changeShipActivity() {
+      Intent i = new Intent(getContext(), ShipActivity.class);
+      startActivity(i);
+      /*ShipFragment shipFragment = new ShipFragment();
+      getFragmentManager().beginTransaction()
+              .replace(R.id.fl_main, shipFragment)
+              .addToBackStack(null)
+              .commit();*/
+  }
 }
